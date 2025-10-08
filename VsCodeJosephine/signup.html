@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #fff5f5; /* soft pink background */
+    }
+
+    .login-container {
+      width: 350px;
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(184, 107, 119, 0.2);
+    }
+
+    /* Heading */
+    .login-container h1 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #b86b77; /* darker pink text */
+      font-weight: bold;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      margin: 0 15px;
+      font-size: 14px;
+      color: #b86b77;
+      cursor: pointer;
+      padding-bottom: 5px;
+    }
+
+    .tab.active {
+      border-bottom: 2px solid #b86b77;
+      font-weight: bold;
+    }
+
+    /* Labels */
+    label {
+      display: block;
+      text-align: left;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: #b86b77;
+      font-weight: bold;
+    }
+
+    /* Inputs */
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #b86b77;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      background-color: #fffaf9;
+    }
+
+    /* Button */
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #f4d6d6;
+      color: #7a3942;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e4c3c3;
+    }
+
+    /* Forgot link */
+    .forgot {
+      display: block;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #b86b77;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    /* Hide forms */
+    .form {
+      display: none;
+    }
+
+    .form.active {
+      display: block;
+    }
+
+    /* Note under confirm password */
+    .note {
+      font-size: 12px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    /* Back link */
+    .back-link {
+      display: block;
+      margin: 10px 0;
+      font-size: 13px;
+      color: #b86b77;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Hide login header for forgot/recovery */
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <!-- Header + Tabs -->
+    <div id="login-header">
+      <h1>Customer Login</h1>
+      <div class="tabs">
+        <div class="tab active" onclick="showForm('signin')">SIGN IN</div>
+        <div class="tab" onclick="showForm('signup')">SIGN UP</div>
+      </div>
+    </div>
+
+    <!-- Sign In Form -->
+    <form id="signin" class="form active">
+      <label for="email">EMAIL</label>
+      <input type="email" id="email" placeholder="Email" required>
+
+      <label for="password">PASSWORD</label>
+      <input type="password" id="password" placeholder="Password" required>
+
+      <button type="submit">SIGN IN</button>
+
+      <a class="forgot" onclick="showForm('forgot')">Forgot your password?</a>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signup" class="form">
+      <label for="fname">FIRST NAME</label>
+      <input type="text" id="fname" placeholder="First Name" required>
+
+      <label for="lname">LAST NAME</label>
+      <input type="text" id="lname" placeholder="Last Name" required>
+
+      <label for="email-register">EMAIL</label>
+      <input type="email" id="email-register" placeholder="Email" required>
+
+      <label for="password-register">PASSWORD</label>
+      <input type="password" id="password-register" placeholder="Password" required>
+
+      <label for="confirm-password">CONFIRM PASSWORD</label>
+      <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+
+      <p class="note">Provide a password for the new account in both fields.</p>
+
+      <button type="submit">CREATE ACCOUNT</button>
+    </form>
+
+    <!-- Forgot Password Form -->
+    <form id="forgot" class="form">
+      <h2 style="margin-bottom:15px; color:#b86b77;">Forgot Password</h2>
+      <input type="email" placeholder="Your Email" required>
+      <button type="button" onclick="showForm('recovery')">Send Email</button>
+      <a class="back-link" onclick="showForm('signin')">← Back to Login</a>
+    </form>
+
+    <!-- Recovery Password Form -->
+    <form id="recovery" class="form">
+      <h2 style="margin-bottom:15px; color:#b86b77;">Recovery Password</h2>
+      <input type="text" placeholder="Reset Code" required>
+      <input type="password" placeholder="New Password" required>
+      <input type="password" placeholder="Confirm Password" required>
+      <button type="submit">Reset Password</button>
+      <a class="back-link" onclick="showForm('signin')">← Back to Login</a>
+    </form>
+  </div>
+
+  <script>
+    function showForm(formId) {
+      document.querySelectorAll(".form").forEach(form => form.classList.remove("active"));
+      document.getElementById(formId).classList.add("active");
+
+      const header = document.getElementById("login-header");
+      if (formId === "signin" || formId === "signup") {
+        header.classList.remove("hidden");
+        document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
+        event.target.classList.add("active");
+      } else {
+        header.classList.add("hidden");
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Information</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Calibri", sans-serif;
+    }
+
+    body {
+      background-color: #e7aed6;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .cv-container {
+      width: 90%;
+      max-width: 1000px;
+      background: url('modern-cv-personal1-1320x825.jpg') center/cover no-repeat;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+    }
+
+    /* Navigation */
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      color: #00e1ff;
+    }
+
+    /* Content section */
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3rem 2rem;
+      flex-wrap: wrap;
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .info-box {
+      background-color: #ecbbdc;
+      padding: 2rem;
+      border: 3px solid #c770bb;
+      width: 45%;
+      min-width: 300px;
+      color: #000;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+
+    .info-box.fade {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+
+    .info-box h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-box h3 {
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 1rem;
+      color: #333;
+    }
+
+    .info-box p {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+    }
+
+    .info-box span {
+      font-weight: bold;
+    }
+
+    /* Photo section */
+    .photo {
+      width: 45%;
+      min-width: 300px;
+      text-align: center;
+      position: relative;
+      background: #fff;
+      padding: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+    }
+
+    .photo img {
+      width: 100%;
+      height: auto;
+      max-width: 320px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .social-links {
+      margin-top: 1.2rem;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      margin: 0 5px;
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      color: white;
+      text-align: center;
+      line-height: 32px;
+      border-radius: 4px;
+      transition: all 0.3s;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+    }
+
+    .social-links img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #ccc;
+      background-color: rgba(0, 0, 0, 0.7);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #00e1ff;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .info-box,
+      .photo {
+        width: 100%;
+      }
+
+      .photo img {
+        width: 70%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-container">
+    <header>
+      <h1>Information</h1>
+      <nav>
+        <ul>
+          <li><a id="objective-link">OBJECTIVE</a></li>
+          <li><a id="demographic-link">DEMOGRAPHIC</a></li>
+          <li><a id="education-link">EDUCATIONAL BACKGROUND</a></li>
+          <li><a id="skills-link">SKILLS</a></li>
+          <li><a id="reference-link">REFERENCE</a></li>
+          <li><a href="front.html">HOME</a></li> <!-- ✅ Added HOME here -->
+        </ul>
+      </nav>
+    </header>
+
+    <div class="content">
+      <div class="info-box" id="info-box">
+        <div class="hello">Hello</div>
+        <h2>I'm Josephine S. Olasiman</h2>
+        <h3>IT Intern</h3>
+        <p><span>PHONE:</span> +63 921 391 1736</p>
+        <p><span>ADDRESS:</span> Bateria, Daanbantayan, Cebu</p>
+        <p><span>E-MAIL:</span> josephinesabridoolasiman@email.com</p>
+      </div>
+
+      <div class="photo">
+        <img src="ChatGPT Image Oct 6, 2025, 10_34_45 AM.png" alt="Profile Photo" />
+        <div class="social-links">
+          <a href="#" style="background-color:#3b5998;">f</a>
+          <a href="#" style="background-color:#E1306C;">
+            <img src="instagram-line.png" alt="Instagram Icon">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const infoBox = document.getElementById("info-box");
+    const objectiveLink = document.getElementById("objective-link");
+    const demographicLink = document.getElementById("demographic-link");
+    const educationLink = document.getElementById("education-link");
+    const skillsLink = document.getElementById("skills-link");
+    const referenceLink = document.getElementById("reference-link");
+
+    const defaultContent = `
+      <div class="hello">Hello</div>
+      <h2>I'm Josephine S. Olasiman</h2>
+      <h3>IT Intern</h3>
+      <p><span>PHONE:</span> +63 921 391 1736</p>
+      <p><span>ADDRESS:</span> Bateria, Daanbantayan, Cebu</p>
+      <p><span>E-MAIL:</span> josephinesabridoolasiman@email.com</p>
+    `;
+
+    const objectiveContent = `
+      <h2>Objective</h2>
+      <p style="margin-top: 1rem;">To obtain a position that enhances my knowledge and skills where I can grow personally and professionally and contribute to support company goals.</p>
+    `;
+
+    const demographicContent = `
+      <h2>Demographic Information</h2>
+      <p style="margin-top: 1rem;"><span>AGE:</span> 22</p>
+      <p><span>SEX:</span> Female</p>
+      <p><span>CIVIL STATUS:</span> Single</p>
+      <p><span>BIRTH DATE:</span> June 6, 2003</p>
+      <p><span>BIRTH PLACE:</span> Bateria, Daanbantayan, Cebu</p>
+    `;
+
+    const educationContent = `
+      <h2>Educational Background</h2>
+      <h3>Tertiary:</h3>
+      <p>Bachelor of Industrial Technology Major in Computer Technology</p>
+      <p>Cebu Technological University – Daanbantayan Campus</p>
+      <p>Agujo, Daanbantayan, Cebu</p>
+      <p><span>Expected Graduate:</span> 2025–2026</p>
+
+      <h3>Senior High School:</h3>
+      <p>Calape National High School</p>
+      <p>Calape, Daanbantayan, Cebu</p>
+      <p><span>Graduated:</span> 2022–2023</p>
+
+      <h3>Junior High School:</h3>
+      <p>Bateria National High School</p>
+      <p>Bateria, Daanbantayan, Cebu</p>
+      <p><span>Graduated:</span> 2019–2020</p>
+
+      <h3>Primary:</h3>
+      <p>Bateria Elementary School</p>
+      <p>Bateria, Daanbantayan, Cebu</p>
+      <p><span>Graduated:</span> 2015–2016</p>
+    `;
+
+    const skillsContent = `
+      <h2>Skills</h2>
+      <ul style="margin-top: 1rem; margin-left: 1rem;">
+        <li>Problem-solving skills</li>
+        <li>Can work independently or as part of the team</li>
+        <li>Communication skills</li>
+        <li>Multitasking skills</li>
+      </ul>
+    `;
+
+    const referenceContent = `
+      <h2>Reference</h2>
+      <p style="margin-top: 1rem;"><span>Ryan Solon</span></p>
+      <p>OJT Coordinator</p>
+      <p>Cebu Technological University – Daanbantayan Campus</p>
+      <p><span>Contact number:</span> 09578101136</p>
+    `;
+
+    function updateBox(content) {
+      infoBox.classList.add("fade");
+      setTimeout(() => {
+        infoBox.innerHTML = content;
+        infoBox.classList.remove("fade");
+      }, 300);
+    }
+
+    objectiveLink.addEventListener("click", () => updateBox(objectiveContent));
+    demographicLink.addEventListener("click", () => updateBox(demographicContent));
+    educationLink.addEventListener("click", () => updateBox(educationContent));
+    skillsLink.addEventListener("click", () => updateBox(skillsContent));
+    referenceLink.addEventListener("click", () => updateBox(referenceContent));
+  </script>
+</body>
+</html>

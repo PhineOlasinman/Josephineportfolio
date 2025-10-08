@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aesthetic Landing Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Calibri, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: url("download (1).jpg") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(1.5px);
+      z-index: -1;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.65);
+      color: white;
+      padding: 15px 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    .navbar ul li a:hover {
+      color: #f5c6d6;
+    }
+
+    /* Hero / Home Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero .content {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 50px 70px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      max-width: 700px;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .hero .content:hover {
+      transform: scale(1.02);
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #3a322c;
+    }
+
+    .hero p {
+      font-size: 22px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .hero .btn {
+      padding: 12px 30px;
+      border: none;
+      background: #f48fb1;
+      color: white;
+      font-size: 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero .btn:hover {
+      background: #ec407a;
+    }
+
+    /* About Section */
+    .about {
+      background: url("download (1).jpg") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 20px;
+      min-height: 100vh;
+      color: #111;
+    }
+
+    .about::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(1.8px);
+      z-index: 0;
+    }
+
+    .about .frame {
+      position: relative;
+      z-index: 1;
+      width: 500px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 40px;
+      text-align: center;
+      color: #000;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .about h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .about p {
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .navbar { padding: 15px 20px; }
+      .hero h1 { font-size: 36px; }
+      .hero p { font-size: 18px; }
+      .hero .content { padding: 40px 30px; }
+      .about .frame { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="#FILE">FILE</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#">LOGIN</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section class="hero" id="FILE">
+    <div class="content">
+      <h1>WELCOME!</h1>
+      <p>Read and know more about <br><strong>Josephine S. Olasiman</strong></p>
+      <button class="btn" onclick="location.href='index.html'">Information</button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="frame">
+      <h1>About Me</h1>
+      <p>
+        As a student with a deep passion for exploring new ideas and expressing creativity, 
+        I have built this page to serve as a true representation of who I am. 
+        The purpose of this page is to highlight my skills, projects, and personal growth. 
+        More than just a portfolio, it is a space that reflects my journey, passions, 
+        and the valuable lessons I have gained along the way.
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>
