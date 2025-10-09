@@ -1,321 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Information</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Calibri", sans-serif;
+      font-family: "Segoe UI", Calibri, sans-serif;
     }
 
     body {
-      background-color: #e7aed6;
-      color: #333;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      background: #f2e6eb; /* soft tone similar to your landing page */
     }
 
-    .cv-container {
-      width: 90%;
-      max-width: 1000px;
-      background: url('modern-cv-personal1-1320x825.jpg') center/cover no-repeat;
-      position: relative;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      overflow: hidden;
+    .login-container {
+      width: 380px;
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
     }
 
-    /* Navigation */
-    header {
-      width: 100%;
+    h1 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #34495e;
+      font-weight: 600;
+    }
+
+    .tabs {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      margin-bottom: 25px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
     }
 
-    header h1 {
-      font-size: 1.8rem;
-      letter-spacing: 1px;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      transition: color 0.3s;
+    .tab {
+      margin: 0 15px;
+      font-size: 15px;
+      color: #4b6584;
       cursor: pointer;
-      font-size: 1rem;
+      padding-bottom: 5px;
+      transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: #00e1ff;
+    .tab.active {
+      border-bottom: 2px solid #4b6584;
+      font-weight: 600;
+      color: #34495e;
     }
 
-    /* Content section */
-    .content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 3rem 2rem;
-      flex-wrap: wrap;
-      background: rgba(255, 255, 255, 0.95);
+    label {
+      display: block;
+      text-align: left;
+      font-size: 13px;
+      margin-bottom: 5px;
+      color: #2c3e50;
+      font-weight: 600;
     }
 
-    .info-box {
-      background-color: #ecbbdc;
-      padding: 2rem;
-      border: 3px solid #c770bb;
-      width: 45%;
-      min-width: 300px;
-      color: #000;
-      position: relative;
-      transition: all 0.4s ease;
-    }
-
-    .info-box.fade {
-      opacity: 0;
-      transform: scale(0.98);
-    }
-
-    .info-box h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-    }
-
-    .info-box h3 {
-      font-weight: bold;
-      font-size: 1rem;
-      margin-top: 1rem;
-      color: #333;
-    }
-
-    .info-box p {
-      margin: 0.3rem 0;
-      font-size: 0.95rem;
-    }
-
-    .info-box span {
-      font-weight: bold;
-    }
-
-    /* Photo section */
-    .photo {
-      width: 45%;
-      min-width: 300px;
-      text-align: center;
-      position: relative;
-      background: #fff;
-      padding: 1rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      border-radius: 4px;
-    }
-
-    .photo img {
+    input {
       width: 100%;
-      height: auto;
-      max-width: 320px;
-      object-fit: cover;
-      border-radius: 5px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 15px;
+      background-color: #fdfdfd;
+      transition: border 0.3s;
     }
 
-    .social-links {
-      margin-top: 1.2rem;
+    input:focus {
+      border-color: #4b6584;
+      outline: none;
     }
 
-    .social-links a {
-      text-decoration: none;
-      margin: 0 5px;
-      display: inline-block;
-      width: 32px;
-      height: 32px;
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #4b6584;
       color: white;
-      text-align: center;
-      line-height: 32px;
-      border-radius: 4px;
-      transition: all 0.3s;
-      font-size: 18px;
-      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .social-links a:hover {
-      transform: scale(1.1);
+    button:hover {
+      background: #34495e;
     }
 
-    .social-links img {
-      width: 20px;
-      height: 20px;
-      vertical-align: middle;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      color: #ccc;
-      background-color: rgba(0, 0, 0, 0.7);
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: #00e1ff;
+    .forgot, .back-link {
+      display: block;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #4b6584;
       text-decoration: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: color 0.3s;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-        text-align: center;
-      }
+    .forgot:hover, .back-link:hover {
+      color: #2c3e50;
+      text-decoration: underline;
+    }
 
-      .info-box,
-      .photo {
-        width: 100%;
-      }
+    .form {
+      display: none;
+    }
 
-      .photo img {
-        width: 70%;
-      }
+    .form.active {
+      display: block;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #777;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #34495e;
+      margin-bottom: 15px;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
-  <div class="cv-container">
-    <header>
-      <h1>Information</h1>
-      <nav>
-        <ul>
-          <li><a id="objective-link">OBJECTIVE</a></li>
-          <li><a id="demographic-link">DEMOGRAPHIC</a></li>
-          <li><a id="education-link">EDUCATIONAL BACKGROUND</a></li>
-          <li><a id="skills-link">SKILLS</a></li>
-          <li><a id="reference-link">REFERENCE</a></li>
-          <li><a href="front.html">HOME</a></li> <!-- ✅ Added HOME here -->
-        </ul>
-      </nav>
-    </header>
-
-    <div class="content">
-      <div class="info-box" id="info-box">
-        <div class="hello">Hello</div>
-        <h2>I'm Josephine S. Olasiman</h2>
-        <h3>IT Intern</h3>
-        <p><span>PHONE:</span> +63 921 391 1736</p>
-        <p><span>ADDRESS:</span> Bateria, Daanbantayan, Cebu</p>
-        <p><span>E-MAIL:</span> josephinesabridoolasiman@email.com</p>
-      </div>
-
-      <div class="photo">
-        <img src="ChatGPT Image Oct 6, 2025, 10_34_45 AM.png" alt="Profile Photo" />
-        <div class="social-links">
-          <a href="#" style="background-color:#3b5998;">f</a>
-          <a href="#" style="background-color:#E1306C;">
-            <img src="instagram-line.png" alt="Instagram Icon">
-          </a>
-        </div>
+  <div class="login-container">
+    <!-- Header + Tabs -->
+    <div id="login-header">
+      <h1>Login</h1>
+      <div class="tabs">
+        <div class="tab active" onclick="showForm('signin')">SIGN IN</div>
+        <div class="tab" onclick="showForm('signup')">SIGN UP</div>
       </div>
     </div>
+
+    <!-- Sign In Form -->
+    <form id="signin" class="form active">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+
+      <button type="submit">Sign In</button>
+      <a class="forgot" onclick="showForm('forgot')">Forgot your password?</a>
+    </form>
+    
+    <!-- Sign Up Form -->
+    <form id="signup" class="form">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" placeholder="First Name" required>
+
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" placeholder="Last Name" required>
+
+      <label for="email-register">Email</label>
+      <input type="email" id="email-register" placeholder="Enter your email" required>
+
+      <label for="password-register">Password</label>
+      <input type="password" id="password-register" placeholder="Create a password" required>
+
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" placeholder="Re-enter your password" required>
+
+      <p class="note">Provide a password for the new account in both fields.</p>
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <!-- Forgot Password Form -->
+    <form id="forgot" class="form">
+      <h2>Forgot Password</h2>
+      <input type="email" placeholder="Enter your email" required>
+      <button type="button" onclick="showForm('recovery')">Send Email</button>
+      <a class="back-link" onclick="showForm('signin')">← Back to Login</a>
+    </form>
+
+    <!-- Recovery Password Form -->
+    <form id="recovery" class="form">
+      <h2>Recovery Password</h2>
+      <input type="text" placeholder="Enter Reset Code" required>
+      <input type="password" placeholder="New Password" required>
+      <input type="password" placeholder="Confirm Password" required>
+      <button type="submit">Reset Password</button>
+      <a class="back-link" onclick="showForm('signin')">← Back to Login</a>
+    </form>
   </div>
 
   <script>
-    const infoBox = document.getElementById("info-box");
-    const objectiveLink = document.getElementById("objective-link");
-    const demographicLink = document.getElementById("demographic-link");
-    const educationLink = document.getElementById("education-link");
-    const skillsLink = document.getElementById("skills-link");
-    const referenceLink = document.getElementById("reference-link");
+    // Show different forms
+    function showForm(formId) {
+      document.querySelectorAll(".form").forEach(form => form.classList.remove("active"));
+      document.getElementById(formId).classList.add("active");
 
-    const defaultContent = `
-      <div class="hello">Hello</div>
-      <h2>I'm Josephine S. Olasiman</h2>
-      <h3>IT Intern</h3>
-      <p><span>PHONE:</span> +63 921 391 1736</p>
-      <p><span>ADDRESS:</span> Bateria, Daanbantayan, Cebu</p>
-      <p><span>E-MAIL:</span> josephinesabridoolasiman@email.com</p>
-    `;
-
-    const objectiveContent = `
-      <h2>Objective</h2>
-      <p style="margin-top: 1rem;">To obtain a position that enhances my knowledge and skills where I can grow personally and professionally and contribute to support company goals.</p>
-    `;
-
-    const demographicContent = `
-      <h2>Demographic Information</h2>
-      <p style="margin-top: 1rem;"><span>AGE:</span> 22</p>
-      <p><span>SEX:</span> Female</p>
-      <p><span>CIVIL STATUS:</span> Single</p>
-      <p><span>BIRTH DATE:</span> June 6, 2003</p>
-      <p><span>BIRTH PLACE:</span> Bateria, Daanbantayan, Cebu</p>
-    `;
-
-    const educationContent = `
-      <h2>Educational Background</h2>
-      <h3>Tertiary:</h3>
-      <p>Bachelor of Industrial Technology Major in Computer Technology</p>
-      <p>Cebu Technological University – Daanbantayan Campus</p>
-      <p>Agujo, Daanbantayan, Cebu</p>
-      <p><span>Expected Graduate:</span> 2025–2026</p>
-
-      <h3>Senior High School:</h3>
-      <p>Calape National High School</p>
-      <p>Calape, Daanbantayan, Cebu</p>
-      <p><span>Graduated:</span> 2022–2023</p>
-
-      <h3>Junior High School:</h3>
-      <p>Bateria National High School</p>
-      <p>Bateria, Daanbantayan, Cebu</p>
-      <p><span>Graduated:</span> 2019–2020</p>
-
-      <h3>Primary:</h3>
-      <p>Bateria Elementary School</p>
-      <p>Bateria, Daanbantayan, Cebu</p>
-      <p><span>Graduated:</span> 2015–2016</p>
-    `;
-
-    const skillsContent = `
-      <h2>Skills</h2>
-      <ul style="margin-top: 1rem; margin-left: 1rem;">
-        <li>Problem-solving skills</li>
-        <li>Can work independently or as part of the team</li>
-        <li>Communication skills</li>
-        <li>Multitasking skills</li>
-      </ul>
-    `;
-
-    const referenceContent = `
-      <h2>Reference</h2>
-      <p style="margin-top: 1rem;"><span>Ryan Solon</span></p>
-      <p>OJT Coordinator</p>
-      <p>Cebu Technological University – Daanbantayan Campus</p>
-      <p><span>Contact number:</span> 09578101136</p>
-    `;
-
-    function updateBox(content) {
-      infoBox.classList.add("fade");
-      setTimeout(() => {
-        infoBox.innerHTML = content;
-        infoBox.classList.remove("fade");
-      }, 300);
+      const header = document.getElementById("login-header");
+      if (formId === "signin" || formId === "signup") {
+        header.classList.remove("hidden");
+        document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
+        event.target.classList.add("active");
+      } else {
+        header.classList.add("hidden");
+      }
     }
 
-    objectiveLink.addEventListener("click", () => updateBox(objectiveContent));
-    demographicLink.addEventListener("click", () => updateBox(demographicContent));
-    educationLink.addEventListener("click", () => updateBox(educationContent));
-    skillsLink.addEventListener("click", () => updateBox(skillsContent));
-    referenceLink.addEventListener("click", () => updateBox(referenceContent));
+    // SIGN UP
+    document.getElementById("signup").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const fname = document.getElementById("fname").value.trim();
+      const lname = document.getElementById("lname").value.trim();
+      const email = document.getElementById("email-register").value.trim();
+      const pass = document.getElementById("password-register").value;
+      const confirm = document.getElementById("confirm-password").value;
+
+      if (pass !== confirm) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (users.some(u => u.email === email)) {
+        alert("Account already exists!");
+        return;
+      }
+
+      users.push({ fname, lname, email, pass });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("Account created successfully!");
+      showForm("signin");
+    });
+
+    // SIGN IN
+    document.getElementById("signin").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.email === email);
+
+      if (!user) {
+        alert("Account does not exist!");
+        return;
+      }
+
+      if (user.pass !== password) {
+        alert("Incorrect password!");
+        return;
+      }
+
+      localStorage.setItem("loggedIn", "true");
+      alert("Login successful!");
+      window.location.href = "3.html"; // ✅ your landing page
+    });
   </script>
 </body>
 </html>
