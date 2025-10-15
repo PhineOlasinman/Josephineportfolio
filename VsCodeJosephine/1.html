@@ -1,284 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetic Landing Page</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Segoe UI", Calibri, sans-serif;
+      font-family: Calibri, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      background: url("download (3).jpg") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(1.5px);
+      z-index: -1;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 15px 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    .navbar ul li a:hover {
+      color: #f5c6d6;
+    }
+
+    /* Disabled state */
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      background: #f2e6eb; /* soft tone similar to your landing page */
-    }
-
-    .login-container {
-      width: 380px;
       text-align: center;
-      background: white;
-      padding: 40px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+      padding: 60px 20px;
     }
 
-    h1 {
-      font-size: 28px;
+    .hero .content {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 50px 70px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      max-width: 700px;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .hero .content:hover {
+      transform: scale(1.02);
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #0d1b2a;
+    }
+
+    .hero p {
+      font-size: 22px;
+      line-height: 1.6;
       margin-bottom: 25px;
-      color: #34495e;
-      font-weight: 600;
+      color: #222;
     }
 
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 25px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
-    }
-
-    .tab {
-      margin: 0 15px;
-      font-size: 15px;
-      color: #4b6584;
-      cursor: pointer;
-      padding-bottom: 5px;
-      transition: color 0.3s;
-    }
-
-    .tab.active {
-      border-bottom: 2px solid #4b6584;
-      font-weight: 600;
-      color: #34495e;
-    }
-
-    label {
-      display: block;
-      text-align: left;
-      font-size: 13px;
-      margin-bottom: 5px;
-      color: #2c3e50;
-      font-weight: 600;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 15px;
-      font-size: 15px;
-      background-color: #fdfdfd;
-      transition: border 0.3s;
-    }
-
-    input:focus {
-      border-color: #4b6584;
-      outline: none;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #4b6584;
-      color: white;
+    .hero .btn {
+      padding: 12px 30px;
       border: none;
+      background: #f48fb1;
+      color: white;
+      font-size: 18px;
       border-radius: 6px;
-      font-size: 15px;
-      font-weight: 600;
       cursor: pointer;
       transition: background 0.3s;
     }
 
-    button:hover {
-      background: #34495e;
+    .hero .btn:hover {
+      background: #ec407a;
     }
 
-    .forgot, .back-link {
-      display: block;
-      margin-top: 12px;
-      font-size: 13px;
-      color: #4b6584;
-      text-decoration: none;
-      cursor: pointer;
-      font-weight: 600;
-      transition: color 0.3s;
+    .btn.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      background: #ccc;
     }
 
-    .forgot:hover, .back-link:hover {
-      color: #2c3e50;
-      text-decoration: underline;
+    /* About */
+    .about {
+      background: url("download (3).jpg") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 20px;
+      min-height: 100vh;
+      color: #fff;
     }
 
-    .form {
-      display: none;
+    .about::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(2px);
+      z-index: 0;
     }
 
-    .form.active {
-      display: block;
+    .about .frame {
+      position: relative;
+      z-index: 1;
+      width: 500px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      text-align: center;
+      color: #000;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     }
 
-    .note {
-      font-size: 12px;
-      color: #777;
-      margin-top: -10px;
-      margin-bottom: 15px;
-      text-align: left;
+    .about h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    .hidden {
-      display: none !important;
-    }
-
-    h2 {
-      font-size: 20px;
-      color: #34495e;
-      margin-bottom: 15px;
-      font-weight: 600;
+    .about p {
+      font-size: 17px;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <!-- Header + Tabs -->
-    <div id="login-header">
-      <h1>Login</h1>
-      <div class="tabs">
-        <div class="tab active" onclick="showForm('signin')">SIGN IN</div>
-        <div class="tab" onclick="showForm('signup')">SIGN UP</div>
-      </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="#home" class="nav-link disabled">HOME</a></li>
+      <li><a href="project.html" class="nav-link disabled">PROJECT</a></li>
+      <li><a href="#about" class="nav-link disabled">ABOUT</a></li>
+      <li><a href="signup.html" id="loginBtn">LOGIN</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="content">
+      <h1>WELCOME!</h1>
+      <p>Read and know more about <br><strong>Josephine S. Olasiman</strong></p>
+      <button class="btn disabled" id="infoBtn">Information</button>
     </div>
+  </section>
 
-    <!-- Sign In Form -->
-    <form id="signin" class="form active">
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Enter your email" required>
-
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter your password" required>
-
-      <button type="submit">Sign In</button>
-      <a class="forgot" onclick="showForm('forgot')">Forgot your password?</a>
-    </form>
-    
-    <!-- Sign Up Form -->
-    <form id="signup" class="form">
-      <label for="fname">First Name</label>
-      <input type="text" id="fname" placeholder="First Name" required>
-
-      <label for="lname">Last Name</label>
-      <input type="text" id="lname" placeholder="Last Name" required>
-
-      <label for="email-register">Email</label>
-      <input type="email" id="email-register" placeholder="Enter your email" required>
-
-      <label for="password-register">Password</label>
-      <input type="password" id="password-register" placeholder="Create a password" required>
-
-      <label for="confirm-password">Confirm Password</label>
-      <input type="password" id="confirm-password" placeholder="Re-enter your password" required>
-
-      <p class="note">Provide a password for the new account in both fields.</p>
-
-      <button type="submit">Create Account</button>
-    </form>
-
-    <!-- Forgot Password Form -->
-    <form id="forgot" class="form">
-      <h2>Forgot Password</h2>
-      <input type="email" placeholder="Enter your email" required>
-      <button type="button" onclick="showForm('recovery')">Send Email</button>
-      <a class="back-link" onclick="showForm('signin')">← Back to Login</a>
-    </form>
-
-    <!-- Recovery Password Form -->
-    <form id="recovery" class="form">
-      <h2>Recovery Password</h2>
-      <input type="text" placeholder="Enter Reset Code" required>
-      <input type="password" placeholder="New Password" required>
-      <input type="password" placeholder="Confirm Password" required>
-      <button type="submit">Reset Password</button>
-      <a class="back-link" onclick="showForm('signin')">← Back to Login</a>
-    </form>
-  </div>
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="frame">
+      <h1>About Me</h1>
+      <p>
+        As a student with a deep passion for exploring new ideas and expressing creativity, 
+        I have built this page to serve as a true representation of who I am. 
+        The purpose of this page is to highlight my skills, projects, and personal growth. 
+        More than just a portfolio, it is a space that reflects my journey, passions, 
+        and the valuable lessons I have gained along the way.
+      </p>
+    </div>
+  </section>
 
   <script>
-    // Show different forms
-    function showForm(formId) {
-      document.querySelectorAll(".form").forEach(form => form.classList.remove("active"));
-      document.getElementById(formId).classList.add("active");
+    const navLinks = document.querySelectorAll('.nav-link');
+    const loginBtn = document.getElementById('loginBtn');
+    const infoBtn = document.getElementById('infoBtn');
 
-      const header = document.getElementById("login-header");
-      if (formId === "signin" || formId === "signup") {
-        header.classList.remove("hidden");
-        document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
-        event.target.classList.add("active");
+    let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    function updateUI() {
+      if (isLoggedIn) {
+        navLinks.forEach(link => link.classList.remove('disabled'));
+        infoBtn.classList.remove('disabled');
+        infoBtn.onclick = () => window.location.href = 'information.html';
+        loginBtn.textContent = 'LOGOUT';
+        loginBtn.href = '#';
       } else {
-        header.classList.add("hidden");
+        navLinks.forEach(link => link.classList.add('disabled'));
+        infoBtn.classList.add('disabled');
+        infoBtn.onclick = null;
+        loginBtn.textContent = 'LOGIN';
+        loginBtn.href = 'signup.html';
       }
     }
 
-    // SIGN UP
-    document.getElementById("signup").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const fname = document.getElementById("fname").value.trim();
-      const lname = document.getElementById("lname").value.trim();
-      const email = document.getElementById("email-register").value.trim();
-      const pass = document.getElementById("password-register").value;
-      const confirm = document.getElementById("confirm-password").value;
-
-      if (pass !== confirm) {
-        alert("Passwords do not match!");
-        return;
+    loginBtn.addEventListener('click', (e) => {
+      if (isLoggedIn) {
+        e.preventDefault();
+        localStorage.setItem('isLoggedIn', 'false');
+        isLoggedIn = false;
+        updateUI();
+        alert('You have successfully logged out.');
       }
-
-      let users = JSON.parse(localStorage.getItem("users")) || [];
-
-      if (users.some(u => u.email === email)) {
-        alert("Account already exists!");
-        return;
-      }
-
-      users.push({ fname, lname, email, pass });
-      localStorage.setItem("users", JSON.stringify(users));
-
-      alert("Account created successfully!");
-      showForm("signin");
     });
 
-    // SIGN IN
-    document.getElementById("signin").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const user = users.find(u => u.email === email);
-
-      if (!user) {
-        alert("Account does not exist!");
-        return;
-      }
-
-      if (user.pass !== password) {
-        alert("Incorrect password!");
-        return;
-      }
-
-      localStorage.setItem("loggedIn", "true");
-      alert("Login successful!");
-      window.location.href = "3.html"; // ✅ your landing page
-    });
+    updateUI();
   </script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aesthetic Landing Page</title>
   <style>
     * {
@@ -71,7 +71,14 @@
       color: #f5c6d6;
     }
 
-    /* Hero / Home Section */
+    /* Disabled state */
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    /* Hero */
     .hero {
       height: 100vh;
       display: flex;
@@ -82,7 +89,7 @@
     }
 
     .hero .content {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.8);
       padding: 50px 70px;
       border-radius: 14px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
@@ -129,7 +136,13 @@
       background: #ec407a;
     }
 
-    /* About Section */
+    .btn.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      background: #ccc;
+    }
+
+    /* About */
     .about {
       background: url("download (3).jpg") no-repeat center center fixed;
       background-size: cover;
@@ -177,44 +190,6 @@
       font-size: 17px;
       line-height: 1.6;
     }
-
-    /* Footer */
-    footer {
-      background: rgba(0, 0, 0, 0.75);
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 10px;
-    }
-
-    .social-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      transition: color 0.3s;
-    }
-
-    .social-links a:hover {
-      color: #f48fb1;
-    }
-
-    @media (max-width: 900px) {
-      .navbar { padding: 15px 20px; }
-      .hero h1 { font-size: 36px; }
-      .hero p { font-size: 18px; }
-      .hero .content { padding: 40px 30px; }
-      .about .frame { width: 90%; }
-    }
   </style>
 </head>
 <body>
@@ -222,20 +197,19 @@
   <!-- Navbar -->
   <nav class="navbar">
     <ul>
-      <li><a href="#home">HOME</a></li>
-      <li><a href="project.html">PROJECT</a></li>
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="1.html">LOGIN</a></li>
-      <li><a href="#" onclick="logout()">LOGOUT</a></li>
+      <li><a href="#home" class="nav-link">HOME</a></li>
+      <li><a href="project.html" class="nav-link">PROJECT</a></li>
+      <li><a href="#about" class="nav-link">ABOUT</a></li>
+      <li><a href="signup.html" id="loginBtn">LOGIN</a></li>
     </ul>
   </nav>
 
-  <!-- Home Section -->
+  
   <section class="hero" id="home">
     <div class="content">
       <h1>WELCOME!</h1>
       <p>Read and know more about <br><strong>Josephine S. Olasiman</strong></p>
-      <button class="btn" onclick="location.href='index.html'">Information</button>
+      <button class="btn" id="infoBtn">Information</button>
     </div>
   </section>
 
@@ -253,22 +227,49 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>Connect with me</p>
-    <div class="social-links">
-      <a href="https://facebook.com" target="_blank">Facebook</a>
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-    </div>
-  </footer>
-
-  <!-- Script for Logout -->
   <script>
-    function logout() {
-      alert("You have been logged out successfully!");
-      window.location.href = "signup.html";
-    }
-  </script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const loginBtn = document.getElementById('loginBtn');
+    const infoBtn = document.getElementById('infoBtn');
 
+    let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    // Update UI based on login state
+    function updateUI() {
+      if (isLoggedIn) {
+        navLinks.forEach(link => link.classList.remove('disabled'));
+        infoBtn.classList.remove('disabled');
+        infoBtn.onclick = () => window.location.href = 'information.html';
+        loginBtn.textContent = 'LOGOUT';
+        loginBtn.href = '#';
+      } else {
+        navLinks.forEach(link => link.classList.add('disabled'));
+        infoBtn.classList.add('disabled');
+        infoBtn.onclick = null;
+        loginBtn.textContent = 'LOGIN';
+        loginBtn.href = 'signup.html';
+      }
+    }
+
+    // Check if redirected from login page
+    if (window.location.search.includes('loggedin=true')) {
+      localStorage.setItem('isLoggedIn', 'true');
+      isLoggedIn = true;
+    }
+
+    // Handle login/logout click
+    loginBtn.addEventListener('click', (e) => {
+      if (isLoggedIn) {
+        e.preventDefault();
+        localStorage.setItem('isLoggedIn', 'false');
+        isLoggedIn = false;
+        updateUI();
+        alert('You have successfully logged out.');
+      }
+    });
+
+    // Initialize UI
+    updateUI();
+  </script>
 </body>
 </html>
