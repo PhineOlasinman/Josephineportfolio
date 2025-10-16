@@ -1,20 +1,14 @@
 <?php
 $servername = "localhost";
 $username = "root"; // default for XAMPP
-$password = "";     // default empty
-<<<<<<< HEAD
+$password = "";     // default empty password
 $dbname = "portfolio";
-=======
-$dbname = "login_system";
->>>>>>> b23ec35a27adaca280403aff7e7d20e343e7a9c8
 
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  die(json_encode(["success" => false, "message" => "Database connection failed: " . $conn->connect_error]));
 }
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> b23ec35a27adaca280403aff7e7d20e343e7a9c8
