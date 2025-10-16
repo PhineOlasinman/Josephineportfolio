@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: application/json");
 include 'db.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
@@ -7,9 +8,11 @@ $lname = $data["lname"];
 $email = $data["email"];
 $pass = $data["pass"];
 
-// check if account already exists
-$sql = "SELECT * FROM users WHERE email='$email'";
-$result = $conn->query($sql);
+// check if email already exists
+$check = $conn->prepare("SELECT * FROM users WHERE email=?");
+$check->bind_param("s", $email);
+$check->execute();
+$result = $check->get_result();
 
 if ($result->num_rows > 0) {
   echo json_encode(["success" => false, "message" => "Account already exists!"]);
@@ -25,7 +28,7 @@ $stmt->bind_param("ssss", $fname, $lname, $email, $hashed);
 if ($stmt->execute()) {
   echo json_encode(["success" => true, "message" => "Account created successfully!"]);
 } else {
-  echo json_encode(["success" => false, "message" => "Error saving user!"]);
+  echo json_encode(["success" => false, "message" => "Error creating account."]);
 }
 
 $stmt->close();
