@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aesthetic Landing Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOME PAGE</title>
   <style>
     * {
       margin: 0;
@@ -71,7 +71,14 @@
       color: #f5c6d6;
     }
 
-    /* Hero / Home Section */
+    /* Disabled state */
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    /* Hero */
     .hero {
       height: 100vh;
       display: flex;
@@ -129,7 +136,13 @@
       background: #ec407a;
     }
 
-    /* About Section */
+    .btn.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      background: #ccc;
+    }
+
+    /* About */
     .about {
       background: url("download (3).jpg") no-repeat center center fixed;
       background-size: cover;
@@ -177,14 +190,6 @@
       font-size: 17px;
       line-height: 1.6;
     }
-
-    @media (max-width: 900px) {
-      .navbar { padding: 15px 20px; }
-      .hero h1 { font-size: 36px; }
-      .hero p { font-size: 18px; }
-      .hero .content { padding: 40px 30px; }
-      .about .frame { width: 90%; }
-    }
   </style>
 </head>
 <body>
@@ -192,25 +197,19 @@
   <!-- Navbar -->
   <nav class="navbar">
     <ul>
-      <li><a href="#home">HOME</a></li>
-      <li><a href="project.html">PROJECT</a></li>
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="signup.html">LOGIN</a></li>
+      <li><a href="#home" class="nav-link disabled">HOME</a></li>
+      <li><a href="project.html" class="nav-link disabled">PROJECT</a></li>
+      <li><a href="#about" class="nav-link disabled">ABOUT</a></li>
+      <li><a href="signup.html" id="loginBtn">LOGIN</a></li>
     </ul>
   </nav>
 
-   <section class="home" id="home">
-    <div class="frame">
-    </div>
-  </section>
-
-
-  <!-- Home Section -->
-  <section class="hero" id="FILE">
+  <!-- Hero Section -->
+  <section class="hero" id="home">
     <div class="content">
       <h1>WELCOME!</h1>
       <p>Read and know more about <br><strong>Josephine S. Olasiman</strong></p>
-      <button class="btn" onclick="location.href='index.html'">Information</button>
+      <button class="btn disabled" id="infoBtn">Information</button>
     </div>
   </section>
 
@@ -228,5 +227,40 @@
     </div>
   </section>
 
+  <script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const loginBtn = document.getElementById('loginBtn');
+    const infoBtn = document.getElementById('infoBtn');
+
+    let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    function updateUI() {
+      if (isLoggedIn) {
+        navLinks.forEach(link => link.classList.remove('disabled'));
+        infoBtn.classList.remove('disabled');
+        infoBtn.onclick = () => window.location.href = 'information.html';
+        loginBtn.textContent = 'LOGOUT';
+        loginBtn.href = '#';
+      } else {
+        navLinks.forEach(link => link.classList.add('disabled'));
+        infoBtn.classList.add('disabled');
+        infoBtn.onclick = null;
+        loginBtn.textContent = 'LOGIN';
+        loginBtn.href = 'signup.html';
+      }
+    }
+
+    loginBtn.addEventListener('click', (e) => {
+      if (isLoggedIn) {
+        e.preventDefault();
+        localStorage.setItem('isLoggedIn', 'false');
+        isLoggedIn = false;
+        updateUI();
+        alert('You have successfully logged out.');
+      }
+    });
+
+    updateUI();
+  </script>
 </body>
 </html>
