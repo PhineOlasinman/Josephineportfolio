@@ -12,17 +12,17 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
--- Database: `portfolio`
+-- Database: `myportfolio`
 -- --------------------------------------------------------
 
---CREATE DATABASE IF NOT EXISTS `portfolio` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+--CREATE DATABASE IF NOT EXISTS `myportfolio` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 --USE `portfolio`;
 
 -- --------------------------------------------------------
--- Table structure for table `portfolio_db`
+-- Table structure for table `myportfolio`
 -- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `portfolio_db` (
+CREATE TABLE IF NOT EXISTS `myportfolio` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `description` TEXT DEFAULT NULL,
@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `portfolio_db` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
--- Dumping data for table `projects`
+-- Dumping data for table `josephineportfolio`
 -- --------------------------------------------------------
 
-INSERT INTO `pprtfolio_db` (`id`, `title`, `description`, `link`, `created_at`, `created_by`, `is_active`) VALUES
+INSERT INTO `myprtfolio` (`id`, `title`, `description`, `link`, `created_at`, `created_by`, `is_active`) VALUES
 (8, 'tatat', 'atat', 'https://www.test.comxxxxxx', '2025-10-17 04:34:01', 'tatatata', 1),
 (9, 'test', 'atata', 'http://example.com/', '2025-10-17 04:34:15', 'fsadfsafa', 1);
 

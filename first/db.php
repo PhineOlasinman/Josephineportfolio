@@ -3,7 +3,7 @@ class Database {
     private $servername = "localhost";
     private $username = "root";   // default for XAMPP
     private $password = "";       // leave blank for XAMPP
-    private $dbname = "portfolio_db";
+    private $dbname = "myportfolio";
     private $conn; // connection variable
 
     public function connect() {

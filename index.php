@@ -1,2 +1,2 @@
 <?php
-require 'second/index.php';
+require 'second/front.html';
