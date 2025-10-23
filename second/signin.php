@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php'; // keep your original DB connection
+include (db.php); // keep your original DB connection
 
 if (isset($_POST['login'])) {
     // Get and trim form input
