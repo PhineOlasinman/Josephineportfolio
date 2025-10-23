@@ -1,2 +1,2 @@
 <?php
-require 'second/login.html';
+require 'second/dashboard.html';
