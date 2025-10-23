@@ -5,25 +5,168 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Calibri, sans-serif; }
-    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f2e6eb; }
-    .login-container { width: 380px; text-align: center; background: white; padding: 40px; border-radius: 10px; border: 1px solid #ddd; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); }
-    h1 { font-size: 28px; margin-bottom: 25px; color: #34495e; font-weight: 600; }
-    .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
-    .tab { margin: 0 15px; font-size: 15px; color: #4b6584; cursor: pointer; padding-bottom: 5px; transition: color 0.3s; }
-    .tab.active { border-bottom: 2px solid #4b6584; font-weight: 600; color: #34495e; }
-    label { display: block; text-align: left; font-size: 13px; margin-bottom: 5px; color: #2c3e50; font-weight: 600; }
-    input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 15px; font-size: 15px; background-color: #fdfdfd; transition: border 0.3s; }
-    input:focus { border-color: #4b6584; outline: none; }
-    button { width: 100%; padding: 12px; background: #4b6584; color: white; border: none; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
-    button:hover { background: #34495e; }
-    .forgot, .back-link { display: block; margin-top: 12px; font-size: 13px; color: #4b6584; text-decoration: none; cursor: pointer; font-weight: 600; transition: color 0.3s; }
-    .forgot:hover, .back-link:hover { color: #2c3e50; text-decoration: underline; }
-    .form { display: none; }
-    .form.active { display: block; }
-    .note { font-size: 12px; color: #777; margin-top: -10px; margin-bottom: 15px; text-align: left; }
-    .hidden { display: none !important; }
-    h2 { font-size: 20px; color: #34495e; margin-bottom: 15px; font-weight: 600; }
+    /* =========================================================
+       1. GLOBAL RESET & FONT
+    ========================================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Calibri, sans-serif;
+    }
+
+    /* =========================================================
+       2. BODY & CONTAINER
+    ========================================================= */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f2e6eb;
+    }
+
+    .login-container {
+      width: 380px;
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    /* =========================================================
+       3. HEADINGS
+    ========================================================= */
+    h1 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #34495e;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #34495e;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       4. TABS
+    ========================================================= */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .tab {
+      margin: 0 15px;
+      font-size: 15px;
+      color: #4b6584;
+      cursor: pointer;
+      padding-bottom: 5px;
+      transition: color 0.3s;
+    }
+
+    .tab.active {
+      border-bottom: 2px solid #4b6584;
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    /* =========================================================
+       5. FORM ELEMENTS
+    ========================================================= */
+    label {
+      display: block;
+      text-align: left;
+      font-size: 13px;
+      margin-bottom: 5px;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 15px;
+      background-color: #fdfdfd;
+      transition: border 0.3s;
+    }
+
+    input:focus {
+      border-color: #4b6584;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #4b6584;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #34495e;
+    }
+
+    /* =========================================================
+       6. LINKS
+    ========================================================= */
+    .forgot,
+    .back-link {
+      display: block;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #4b6584;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .forgot:hover,
+    .back-link:hover {
+      color: #2c3e50;
+      text-decoration: underline;
+    }
+
+    /* =========================================================
+       7. FORM LAYOUT
+    ========================================================= */
+    .form {
+      display: none;
+    }
+
+    .form.active {
+      display: block;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #777;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .hidden {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -94,7 +237,7 @@
       }
     }
 
-    // SIGN UP AJAX logic
+    // SIGN UP AJAX logic (unchanged)
     document.getElementById("signup").addEventListener("submit", async function (e) {
       e.preventDefault();
       const fname = document.getElementById("fname").value.trim();
