@@ -1,2 +1,2 @@
 <?php
-require 'dashboard.html';
+require 'dashboard.php';
