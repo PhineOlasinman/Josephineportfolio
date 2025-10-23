@@ -1,29 +1,28 @@
 <?php
-include 'db.php'; // your database connection
+include 'db.php'; // Database connection
 
-// Get the raw POST data (JSON)
-$input = json_decode(file_get_contents('php://input'), true);
+if (isset($_POST['signup'])) {
+    $fname = trim($_POST['fname'] ?? '');
+    $lname = trim($_POST['lname'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $pass = trim($_POST['pass'] ?? '');
+    $confirm = trim($_POST['confirm'] ?? '');
 
-// Initialize response
-$response = ["success" => false, "message" => ""];
-
-if ($input) {
-    $fname = trim($input['fname'] ?? '');
-    $lname = trim($input['lname'] ?? '');
-    $email = trim($input['email'] ?? '');
-    $pass = trim($input['pass'] ?? '');
-
-    // Check for empty fields
-    if (!$fname || !$lname || !$email || !$pass) {
-        $response['message'] = "Please fill in all fields!";
-        echo json_encode($response);
+    // Check empty fields
+    if (!$fname || !$lname || !$email || !$pass || !$confirm) {
+        echo "<script>alert('Please fill in all fields!'); window.location.href='index.php';</script>";
         exit;
     }
 
-    // Validate email format
+    // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $response['message'] = "Invalid email format!";
-        echo json_encode($response);
+        echo "<script>alert('Invalid email format!'); window.location.href='index.php';</script>";
+        exit;
+    }
+
+    // Check password match
+    if ($pass !== $confirm) {
+        echo "<script>alert('Passwords do not match!'); window.location.href='index.php';</script>";
         exit;
     }
 
@@ -37,8 +36,7 @@ if ($input) {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $response['message'] = "Email already registered!";
-        echo json_encode($response);
+        echo "<script>alert('Email already registered!'); window.location.href='index.php';</script>";
         $stmt->close();
         $conn->close();
         exit;
@@ -50,16 +48,15 @@ if ($input) {
     $insert_stmt->bind_param("ssss", $fname, $lname, $email, $hashed_pass);
 
     if ($insert_stmt->execute()) {
-        $response['success'] = true;
-        $response['message'] = "Registration successful! You can now log in.";
+        echo "<script>alert('Registration successful! You can now log in.'); window.location.href='index.php';</script>";
     } else {
-        $response['message'] = "Error: " . $conn->error;
+        echo "<script>alert('Error: ".$conn->error."'); window.location.href='index.php';</script>";
     }
 
     $insert_stmt->close();
     $conn->close();
 } else {
-    $response['message'] = "Invalid request!";
+    header("Location: index.php");
+    exit;
 }
-
-echo json_encode($response);
+?>
