@@ -1,34 +1,36 @@
 <?php
-session_start();
-include 'db.php';
+include 'db.php'; // your database connection
 
-$data = json_decode(file_get_contents("php://input"), true);
-$fname = trim($data["fname"] ?? '');
-$lname = trim($data["lname"] ?? '');
-$email = trim($data["email"] ?? '');
-$pass = trim($data["pass"] ?? '');
-$response = ["success" => false, "message" => ""];
+if (isset($_POST['signup'])) {
+    // Get form data
+    $fname = trim($_POST['fname'] ?? '');
+    $lname = trim($_POST['lname'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $pass = trim($_POST['pass'] ?? '');
 
-if (!$fname || !$lname || !$email || !$pass) {
-  $response["message"] = "Please fill in all fields.";
-  echo json_encode($response);
-  exit;
+    if (!$fname || !$lname || !$email || !$pass) {
+        echo "<script>alert('Please fill in all fields!'); window.location.href='index.php';</script>";
+        exit;
+    }
+
+    // Hash the password
+    $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
+
+    // Check if email exists
+    $check_sql = "SELECT * FROM users WHERE email='$email'";
+    $result = $conn->query($check_sql);
+
+    if ($result->num_rows > 0) {
+        echo "<script>alert('Email already registered!'); window.location.href='index.php';</script>";
+    } else {
+        $insert_sql = "INSERT INTO users (fname, lname, email, password) VALUES ('$fname', '$lname', '$email', '$hashed_pass')";
+        if ($conn->query($insert_sql) === TRUE) {
+            echo "<script>alert('Registration successful! You can now log in.'); window.location.href='index.php';</script>";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+    }
+
+    $conn->close();
 }
-
-$hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
-
-$stmt = $conn->prepare("INSERT INTO users (fname, lname, email, password) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("ssss", $fname, $lname, $email, $hashed_pass);
-
-if ($stmt->execute()) {
-  $response["success"] = true;
-  $response["message"] = "Account created successfully!";
-} else {
-  $response["message"] = "Email already exists!";
-}
-
-$stmt->close();
-$conn->close();
-
-echo json_encode($response);
 ?>
