@@ -15,6 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
     }
-    echo "<script>alert('Invalid login credentials'); window.location='login.php';</script>";
+    echo "<script>alert('Invalid login credentials'); window.location='login.html';</script>";
 }
 ?>
