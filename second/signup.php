@@ -1,33 +1,34 @@
 <?php
+session_start();
 include 'db.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $fname = trim($_POST["fname"]);
-  $lname = trim($_POST["lname"]);
-  $email = trim($_POST["email"]);
-  $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+$data = json_decode(file_get_contents("php://input"), true);
+$fname = trim($data["fname"] ?? '');
+$lname = trim($data["lname"] ?? '');
+$email = trim($data["email"] ?? '');
+$pass = trim($data["pass"] ?? '');
+$response = ["success" => false, "message" => ""];
 
-  // Check if email already exists
-  $check = $conn->prepare("SELECT * FROM users WHERE email = ?");
-  $check->bind_param("s", $email);
-  $check->execute();
-  $result = $check->get_result();
-
-  if ($result->num_rows > 0) {
-    echo "<script>alert('Email already exists! Please log in.'); window.location='signin.html';</script>";
-  } else {
-    $stmt = $conn->prepare("INSERT INTO users (fname, lname, email, password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $fname, $lname, $email, $password);
-
-    if ($stmt->execute()) {
-      echo "<script>alert('Signup successful! You can now log in.'); window.location='signin.html';</script>";
-    } else {
-      echo "Error: " . $conn->error;
-    }
-
-    $stmt->close();
-  }
-  $check->close();
-  $conn->close();
+if (!$fname || !$lname || !$email || !$pass) {
+  $response["message"] = "Please fill in all fields.";
+  echo json_encode($response);
+  exit;
 }
+
+$hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
+
+$stmt = $conn->prepare("INSERT INTO users (fname, lname, email, password) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssss", $fname, $lname, $email, $hashed_pass);
+
+if ($stmt->execute()) {
+  $response["success"] = true;
+  $response["message"] = "Account created successfully!";
+} else {
+  $response["message"] = "Email already exists!";
+}
+
+$stmt->close();
+$conn->close();
+
+echo json_encode($response);
 ?>

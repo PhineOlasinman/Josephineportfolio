@@ -34,17 +34,17 @@ CREATE TABLE IF NOT EXISTS `myportfolio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
--- Dumping data for table `josephineportfolio`
+-- Dumping data for table `myportfolio`
 -- --------------------------------------------------------
 
-INSERT INTO `myprtfolio` (`id`, `title`, `description`, `link`, `created_at`, `created_by`, `is_active`) VALUES
+INSERT INTO `myportfolio` (`id`, `title`, `description`, `link`, `created_at`, `created_by`, `is_active`) VALUES
 (8, 'tatat', 'atat', 'https://www.test.comxxxxxx', '2025-10-17 04:34:01', 'tatatata', 1),
 (9, 'test', 'atata', 'http://example.com/', '2025-10-17 04:34:15', 'fsadfsafa', 1);
 
 COMMIT;
---CREATE DATABASE portfolio_db;
+--CREATE DATABASE myportfolio;
 
---USE portfolio_db;
+--USE myportfolio;
 
 --CREATE TABLE users (
  -- id INT AUTO_INCREMENT PRIMARY KEY,
