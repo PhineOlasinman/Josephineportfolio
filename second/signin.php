@@ -1,49 +1,43 @@
 <?php
 session_start();
-include 'db.php';
+include 'db.php'; // keep your original DB connection
 
-// ✅ Function to handle login
-function loginUser($conn, $email, $password) {
-    $response = ["success" => false, "message" => ""];
+if (isset($_POST['login'])) {
+    $email = trim($_POST['email']);   // Adjust according to your form field name
+    $password = trim($_POST['password']);
 
-    if (!$email || !$password) {
-        $response["message"] = "Please fill in all fields.";
-        return $response;
-    }
+    if (!empty($email) && !empty($password)) {
+        // Secure query using prepared statement
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+            if (password_verify($password, $user['password'])) {
+                // Store session variables
+                $_SESSION['isLoggedIn'] = true;
+                $_SESSION['fname'] = $user['fname'];
+                $_SESSION['lname'] = $user['lname'];
+                $_SESSION['email'] = $user['email'];
 
-        if (password_verify($password, $user["password"])) {
-            $_SESSION["isLoggedIn"] = true;
-            $_SESSION["fname"] = $user["fname"];
-            $_SESSION["lname"] = $user["lname"];
-            $_SESSION["email"] = $user["email"];
-
-            $response["success"] = true;
-            $response["message"] = "Welcome, " . $user["fname"] . "!";
+                // Redirect after success
+                header("Location: front.html");
+                exit();
+            } else {
+                echo "<script>alert('Incorrect password!'); window.location.href='index.php';</script>";
+            }
         } else {
-            $response["message"] = "Invalid password!";
+            echo "<script>alert('No account found with this email!'); window.location.href='index.php';</script>";
         }
-    } else {
-        $response["message"] = "No account found with this email!";
-    }
 
-    $stmt->close();
-    return $response;
+        $stmt->close();
+    } else {
+        echo "<script>alert('Please fill in all fields!'); window.location.href='index.php';</script>";
+    }
 }
 
-$data = json_decode(file_get_contents("php://input"), true);
-$email = trim($data["email"] ?? '');
-$password = trim($data["password"] ?? '');
-
-$response = loginUser($conn, $email, $password);
 $conn->close();
-
-echo json_encode($response);
 ?>
