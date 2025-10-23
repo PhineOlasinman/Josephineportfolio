@@ -1,62 +1,48 @@
 <?php
-include 'db.php'; // Database connection
+include 'db.php';
 
 if (isset($_POST['signup'])) {
-    $fname = trim($_POST['fname'] ?? '');
-    $lname = trim($_POST['lname'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $pass = trim($_POST['pass'] ?? '');
-    $confirm = trim($_POST['confirm'] ?? '');
+    $first_name = trim($_POST['first_name']);
+    $last_name = trim($_POST['last_name']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password']);
 
-    // Check empty fields
-    if (!$fname || !$lname || !$email || !$pass || !$confirm) {
-        echo "<script>alert('Please fill in all fields!'); window.location.href='index.php';</script>";
-        exit;
-    }
-
-    // Validate email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<script>alert('Invalid email format!'); window.location.href='index.php';</script>";
-        exit;
-    }
-
-    // Check password match
-    if ($pass !== $confirm) {
-        echo "<script>alert('Passwords do not match!'); window.location.href='index.php';</script>";
-        exit;
-    }
-
-    // Hash password
-    $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
-
-    // Check if email exists
-    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        echo "<script>alert('Email already registered!'); window.location.href='index.php';</script>";
-        $stmt->close();
-        $conn->close();
-        exit;
-    }
-    $stmt->close();
-
-    // Insert new user
-    $insert_stmt = $conn->prepare("INSERT INTO users (fname, lname, email, password) VALUES (?, ?, ?, ?)");
-    $insert_stmt->bind_param("ssss", $fname, $lname, $email, $hashed_pass);
-
-    if ($insert_stmt->execute()) {
-        echo "<script>alert('Registration successful! You can now log in.'); window.location.href='index.php';</script>";
+    // Basic validation
+    if (!$first_name || !$last_name || !$email || !$password) {
+        echo "<script>alert('Please fill in all fields');</script>";
+    } elseif ($password !== $confirm_password) {
+        echo "<script>alert('Passwords do not match');</script>";
     } else {
-        echo "<script>alert('Error: ".$conn->error."'); window.location.href='index.php';</script>";
-    }
+        // Check if email already exists
+        $stmt = $conn->prepare("SELECT * FROM user WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    $insert_stmt->close();
-    $conn->close();
-} else {
-    header("Location: signin.php");
-    exit;
+        if ($result->num_rows > 0) {
+            echo "<script>alert('Email already registered');</script>";
+        } else {
+            // Insert new user
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("INSERT INTO user (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
+            if ($stmt->execute()) {
+                echo "<script>alert('Signup successful'); window.location='login.php';</script>";
+            } else {
+                echo "<script>alert('Signup failed');</script>";
+            }
+        }
+    }
 }
 ?>
+
+<!-- HTML Signup Form -->
+<form method="POST" action="">
+    <input type="text" name="first_name" placeholder="First Name" required><br>
+    <input type="text" name="last_name" placeholder="Last Name" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+    <button type="submit" name="signup">Sign Up</button>
+</form>
