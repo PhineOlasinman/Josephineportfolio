@@ -18,11 +18,12 @@
 
       <button type="submit">Login</button>
 
-      </form>
+      <!-- Links Row -->
+      <div class="links-row">
+        <a href="signup.php" class="account-link">Create an account</a>
+        <a href="forgot_password.php" class="account-link">Forgot Password?</a>
+      </div>
+    </form>
   </div>
-  <div class="links-row">
-  <a href="signup.php" class="account-link">Create an account</a>
-  <a href="forgot_password.php" class="account-link">Forgot Password?</a>
-</div>
 </body>
 </html>
