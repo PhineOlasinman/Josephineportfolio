@@ -18,6 +18,7 @@
 
       <button type="submit">Login</button>
       <a href="signup.php" class="back-link">Create an account</a>
+      <a href="forgot_password.php" class="account-link">Forgot Password?</a>
     </form>
   </div>
 </body>
