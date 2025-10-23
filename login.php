@@ -17,9 +17,12 @@
       <input type="password" name="password" required>
 
       <button type="submit">Login</button>
-      <a href="signup.php" class="back-link">Create an account</a>
-      <a href="forgot_password.php" class="account-link">Forgot Password?</a>
-    </form>
+
+      </form>
   </div>
+  <div class="links-row">
+  <a href="signup.php" class="account-link">Create an account</a>
+  <a href="forgot_password.php" class="account-link">Forgot Password?</a>
+</div>
 </body>
 </html>
