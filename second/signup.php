@@ -56,7 +56,7 @@ if (isset($_POST['signup'])) {
     $insert_stmt->close();
     $conn->close();
 } else {
-    header("Location: index.php");
+    header("Location: signin.php");
     exit;
 }
 ?>
