@@ -8,7 +8,8 @@ if (isset($_POST['signup'])) {
     $email = trim($_POST['email'] ?? '');
     $pass = trim($_POST['pass'] ?? '');
 
-    if (!$fname || !$lname || !$email || !$pass) {
+    // Check for empty fields
+    if (empty($fname) || empty($lname) || empty($email) || empty($pass)) {
         echo "<script>alert('Please fill in all fields!'); window.location.href='index.php';</script>";
         exit;
     }
@@ -16,21 +17,31 @@ if (isset($_POST['signup'])) {
     // Hash the password
     $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
-    // Check if email exists
-    $check_sql = "SELECT * FROM users WHERE email='$email'";
-    $result = $conn->query($check_sql);
+    // Check if email exists using prepared statement
+    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result(); // needed to check num_rows
 
-    if ($result->num_rows > 0) {
+    if ($stmt->num_rows > 0) {
         echo "<script>alert('Email already registered!'); window.location.href='index.php';</script>";
+        $stmt->close();
+        $conn->close();
+        exit;
+    }
+    $stmt->close();
+
+    // Insert new user securely
+    $insert_stmt = $conn->prepare("INSERT INTO users (fname, lname, email, password) VALUES (?, ?, ?, ?)");
+    $insert_stmt->bind_param("ssss", $fname, $lname, $email, $hashed_pass);
+
+    if ($insert_stmt->execute()) {
+        echo "<script>alert('Registration successful! You can now log in.'); window.location.href='index.php';</script>";
     } else {
-        $insert_sql = "INSERT INTO users (fname, lname, email, password) VALUES ('$fname', '$lname', '$email', '$hashed_pass')";
-        if ($conn->query($insert_sql) === TRUE) {
-            echo "<script>alert('Registration successful! You can now log in.'); window.location.href='index.php';</script>";
-        } else {
-            echo "Error: " . $conn->error;
-        }
+        echo "<script>alert('Error: " . $conn->error . "'); window.location.href='index.php';</script>";
     }
 
+    $insert_stmt->close();
     $conn->close();
 }
 ?>
