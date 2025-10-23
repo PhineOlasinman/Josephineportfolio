@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $query->fetch_assoc();
         if (password_verify($password, $row['password'])) {
             $_SESSION['user'] = $row['first_name'];
-            header("Location: front.html");
+            header("Location: dashboard.php");
             exit;
         }
     }
-    echo "<script>alert('Invalid login credentials'); window.location='login.html';</script>";
+    echo "<script>alert('Invalid login credentials'); window.location='login.php';</script>";
 }
 ?>
