@@ -6,6 +6,8 @@ if (isset($_POST['login'])) {
     $email = trim($_POST['email']);   // Adjust according to your form field name
     $password = trim($_POST['password']);
 
+
+
     if (!empty($email) && !empty($password)) {
         // Secure query using prepared statement
         $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");

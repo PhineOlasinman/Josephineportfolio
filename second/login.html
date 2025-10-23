@@ -5,121 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Calibri, sans-serif;
-    }
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: #f2e6eb;
-    }
-    .login-container {
-      width: 380px;
-      text-align: center;
-      background: white;
-      padding: 40px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    }
-    h1 {
-      font-size: 28px;
-      margin-bottom: 25px;
-      color: #34495e;
-      font-weight: 600;
-    }
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 25px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
-    }
-    .tab {
-      margin: 0 15px;
-      font-size: 15px;
-      color: #4b6584;
-      cursor: pointer;
-      padding-bottom: 5px;
-      transition: color 0.3s;
-    }
-    .tab.active {
-      border-bottom: 2px solid #4b6584;
-      font-weight: 600;
-      color: #34495e;
-    }
-    label {
-      display: block;
-      text-align: left;
-      font-size: 13px;
-      margin-bottom: 5px;
-      color: #2c3e50;
-      font-weight: 600;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 15px;
-      font-size: 15px;
-      background-color: #fdfdfd;
-      transition: border 0.3s;
-    }
-    input:focus {
-      border-color: #4b6584;
-      outline: none;
-    }
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #4b6584;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #34495e;
-    }
-    .forgot, .back-link {
-      display: block;
-      margin-top: 12px;
-      font-size: 13px;
-      color: #4b6584;
-      text-decoration: none;
-      cursor: pointer;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    .forgot:hover, .back-link:hover {
-      color: #2c3e50;
-      text-decoration: underline;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Calibri, sans-serif; }
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f2e6eb; }
+    .login-container { width: 380px; text-align: center; background: white; padding: 40px; border-radius: 10px; border: 1px solid #ddd; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); }
+    h1 { font-size: 28px; margin-bottom: 25px; color: #34495e; font-weight: 600; }
+    .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+    .tab { margin: 0 15px; font-size: 15px; color: #4b6584; cursor: pointer; padding-bottom: 5px; transition: color 0.3s; }
+    .tab.active { border-bottom: 2px solid #4b6584; font-weight: 600; color: #34495e; }
+    label { display: block; text-align: left; font-size: 13px; margin-bottom: 5px; color: #2c3e50; font-weight: 600; }
+    input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 15px; font-size: 15px; background-color: #fdfdfd; transition: border 0.3s; }
+    input:focus { border-color: #4b6584; outline: none; }
+    button { width: 100%; padding: 12px; background: #4b6584; color: white; border: none; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+    button:hover { background: #34495e; }
+    .forgot, .back-link { display: block; margin-top: 12px; font-size: 13px; color: #4b6584; text-decoration: none; cursor: pointer; font-weight: 600; transition: color 0.3s; }
+    .forgot:hover, .back-link:hover { color: #2c3e50; text-decoration: underline; }
     .form { display: none; }
     .form.active { display: block; }
-    .note {
-      font-size: 12px;
-      color: #777;
-      margin-top: -10px;
-      margin-bottom: 15px;
-      text-align: left;
-    }
+    .note { font-size: 12px; color: #777; margin-top: -10px; margin-bottom: 15px; text-align: left; }
     .hidden { display: none !important; }
-    h2 {
-      font-size: 20px;
-      color: #34495e;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
+    h2 { font-size: 20px; color: #34495e; margin-bottom: 15px; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -132,15 +36,15 @@
       </div>
     </div>
 
-    <!-- Sign In Form -->
-    <form id="signin" class="form active">
+    <!-- Sign In Form (PHP POST version) -->
+    <form id="signin" class="form active" method="POST" action="signin.php">
       <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Enter your email" required>
+      <input type="email" name="email" id="email" placeholder="Enter your email" required>
 
       <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter your password" required>
+      <input type="password" name="password" id="password" placeholder="Enter your password" required>
 
-      <button type="submit">Sign In</button>
+      <button type="submit" name="login">Sign In</button>
       <a class="forgot" onclick="showForm('forgot')">Forgot your password?</a>
     </form>
 
@@ -166,7 +70,7 @@
       <button type="submit">Create Account</button>
     </form>
 
-    <!-- Forgot Password -->
+    <!-- Forgot Password Form -->
     <form id="forgot" class="form">
       <h2>Forgot Password</h2>
       <input type="email" placeholder="Enter your email" required>
@@ -190,7 +94,7 @@
       }
     }
 
-    // ✅ SIGN UP
+    // SIGN UP AJAX logic
     document.getElementById("signup").addEventListener("submit", async function (e) {
       e.preventDefault();
       const fname = document.getElementById("fname").value.trim();
@@ -212,27 +116,6 @@
       if (data.success) {
         showForm("signin");
         document.getElementById("signin-tab").classList.add("active");
-      }
-    });
-
-    // ✅ SIGN IN
-    document.getElementById("signin").addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const email = document.getElementById("email").value.trim();
-      const pass = document.getElementById("password").value;
-
-      const res = await fetch("signin.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, pass })
-      });
-
-      const data = await res.json();
-      alert(data.message);
-
-      if (data.success) {
-        localStorage.setItem("loggedIn", "true");
-        window.location.href = "front.html";
       }
     });
   </script>
