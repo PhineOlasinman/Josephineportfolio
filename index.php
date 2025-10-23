@@ -1,2 +1,2 @@
 <?php
-require 'second/front.html';
+require 'second/login.html';

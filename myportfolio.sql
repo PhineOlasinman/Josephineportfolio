@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `myportfolio`
 -- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `myportfolio` (
+CREATE TABLE IF NOT EXISTS `josephine` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `description` TEXT DEFAULT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `myportfolio` (
 -- Dumping data for table `myportfolio`
 -- --------------------------------------------------------
 
-INSERT INTO `myportfolio` (`id`, `title`, `description`, `link`, `created_at`, `created_by`, `is_active`) VALUES
+INSERT INTO `josephine` (`id`, `title`, `description`, `link`, `created_at`, `created_by`, `is_active`) VALUES
 (8, 'tatat', 'atat', 'https://www.test.comxxxxxx', '2025-10-17 04:34:01', 'tatatata', 1),
 (9, 'test', 'atata', 'http://example.com/', '2025-10-17 04:34:15', 'fsadfsafa', 1);
 
