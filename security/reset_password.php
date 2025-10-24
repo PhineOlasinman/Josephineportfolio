@@ -6,7 +6,7 @@ if(isset($_GET['token'])){
     $token = $_GET['token'];
 
     // Check if token is valid and not expired
-    $stmt = $conn->prepare("SELECT * FROM user_form WHERE reset_token=? AND token_expiry > NOW()");
+    $stmt = $conn->prepare("SELECT * FROM user WHERE reset_token=? AND token_expiry > NOW()");
     $stmt->bind_param("s", $token);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -21,7 +21,7 @@ if(isset($_GET['token'])){
 // Handle form submission
 if(isset($_POST['reset'])){
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("UPDATE user_form SET password=?, reset_token=NULL, token_expiry=NULL WHERE reset_token=?");
+    $stmt = $conn->prepare("UPDATE user SET password=?, reset_token=NULL, token_expiry=NULL WHERE reset_token=?");
     $stmt->bind_param("ss", $password, $token);
     $stmt->execute();
 

@@ -6,7 +6,7 @@ if(isset($_POST['forgot'])){
     $email = trim($_POST['email']);
 
     // Check if email exists
-    $stmt = $conn->prepare("SELECT * FROM user_form WHERE email = ?");
+    $stmt = $conn->prepare("SELECT * FROM user WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -16,7 +16,7 @@ if(isset($_POST['forgot'])){
         $expiry = date("Y-m-d H:i:s", strtotime('+1 hour')); // token expires in 1 hour
 
         // Save token in database
-        $stmt = $conn->prepare("UPDATE user_form SET reset_token=?, token_expiry=? WHERE email=?");
+        $stmt = $conn->prepare("UPDATE user SET reset_token=?, token_expiry=? WHERE email=?");
         $stmt->bind_param("sss", $token, $expiry, $email);
         $stmt->execute();
 
