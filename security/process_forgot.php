@@ -16,7 +16,7 @@ if(isset($_POST['forgot'])){
         $expiry = date("Y-m-d H:i:s", strtotime('+1 hour')); // token expires in 1 hour
 
         // Save token in database
-        $stmt = $conn->prepare("UPDATE user SET reset_token=?, token_expiry=? WHERE email=?");
+        $stmt = $conn->prepare("UPDATE `user` SET reset_token = ?, token_expiry = ? WHERE email = ?");
         $stmt->bind_param("sss", $token, $expiry, $email);
         $stmt->execute();
 
