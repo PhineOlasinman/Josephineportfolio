@@ -1,2 +1,2 @@
 <?php
-require 'intro/front.html';
+require 'front.html';
