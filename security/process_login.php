@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $query->fetch_assoc();
         if (password_verify($password, $row['password'])) {
             $_SESSION['user'] = $row['first_name'];
-            header("Location: front.html");
+            header("Location: intro/front.html");
             exit;
         }
     }
