@@ -1,47 +1,39 @@
 <?php
 session_start();
-include 'db.php';
+include 'db.php'; // your database connection
 
-if(isset($_GET['token'])){
-    $token = $_GET['token'];
+if(isset($_POST['forgot'])){
+    $email = trim($_POST['email']);
 
-    // Check if token is valid and not expired
-    $stmt = $conn->prepare("SELECT * FROM user WHERE reset_token=? AND token_expiry > NOW()");
-    $stmt->bind_param("s", $token);
+    // Check if email exists
+    $stmt = $conn->prepare("SELECT * FROM `user` WHERE email = ?");
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if($result->num_rows == 0){
-        die("Invalid or expired token.");
+    if($result->num_rows > 0){
+        // Generate a temporary password
+        $temp_password = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, 8);
+        $hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
+
+        // Update the user password in the database
+        $stmt = $conn->prepare("UPDATE `user` SET password=? WHERE email=?");
+        $stmt->bind_param("ss", $hashed_password, $email);
+        $stmt->execute();
+
+        // Send the temporary password via email
+        $subject = "Your Temporary Password";
+        $message = "Your temporary password is: $temp_password\nPlease log in and change it immediately.";
+        $headers = "From: no-reply@yourdomain.com";
+
+        if(mail($email, $subject, $message, $headers)){
+            $_SESSION['message'] = "Temporary password sent to your email.";
+        } else {
+            $_SESSION['message'] = "Failed to send email.";
+        }
+    } else {
+        $_SESSION['message'] = "Email not found.";
     }
-} else {
-    die("No token provided.");
+
+    header("Location: forgot_password.php");
 }
-
-// Handle form submission
-if(isset($_POST['reset'])){
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("UPDATE user SET password=?, reset_token=NULL, token_expiry=NULL WHERE reset_token=?");
-    $stmt->bind_param("ss", $password, $token);
-    $stmt->execute();
-
-    $_SESSION['message'] = "Password updated successfully.";
-    header("Location: login.php");
-}
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Reset Password</title>
-</head>
-<body>
-<h2>Reset Password</h2>
-<form method="POST">
-    <label>New Password:</label>
-    <input type="password" name="password" required>
-    <button type="submit" name="reset">Reset Password</button>
-</form>
-</body>
-</html>
