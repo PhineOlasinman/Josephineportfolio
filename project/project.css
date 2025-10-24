@@ -1,0 +1,55 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+    color:#333;
+}
+h1 {text-align:center;margin-bottom:20px;}
+button {
+    padding: 8px 20px;
+    border-radius:5px;
+    border:1px solid #1a1a1a;
+    background:#fff;
+    color:#1a1a1a;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover {background:#1a1a1a;color:#fff;}
+form {
+    background:#fff;
+    max-width:650px;
+    margin:0 auto 40px auto;
+    padding:25px 30px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+label{display:block;margin-bottom:6px;font-weight:600;color:#444;}
+input[type=text], input[type=date], input[type=file], textarea {
+    width:100%;
+    padding:10px 12px;
+    margin-bottom:18px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+textarea{resize:vertical;min-height:80px;}
+#currentFile {font-style:italic;color:#555;margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+.form-buttons {display:flex; gap:10px; margin-top:10px;}
+table {
+    width:100%;
+    border-collapse: collapse;
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom:30px;
+}
+th, td {padding:12px 15px; text-align:left; border-bottom:1px solid #e0e0e0;font-size:14px;}
+th {background:#0056b3;color:#fff;font-weight:600;}
+tr:nth-child(even){background:#f9f9f9;}
+tr:hover{background:#eef2f7;}
+.actions button{margin-right:5px; padding:5px 12px; font-size:13px; border-radius:5px; font-weight:500;}
+td a{display:inline-block; max-width:150px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#0056b3; text-decoration:none;}
+td a:hover{text-decoration:underline;}

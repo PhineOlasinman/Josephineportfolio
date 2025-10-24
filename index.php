@@ -1,2 +1,2 @@
 <?php
-require 'security/front.html';
+require '../intro/index.php';

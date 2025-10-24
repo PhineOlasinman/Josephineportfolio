@@ -40,7 +40,7 @@
   <script>
     // Information button redirects directly
     document.getElementById('infoBtn').onclick = () => {
-      window.location.href = 'info/background.php';
+      window.location.href = '../info/background.php';
     };
   </script>
 </body>
