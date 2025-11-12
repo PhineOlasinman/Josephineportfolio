@@ -83,17 +83,25 @@ $showStorage = isset($_GET['view']) && $_GET['view'] === 'storage';
 <body>
 <h1>Project Management System</h1>
 
-<div style="display:flex; justify-content:flex-start; gap:10px; margin-bottom:20px; max-width:650px; margin-left:auto; margin-right:auto;">
+<div class="top-buttons 
+    <?php 
+        if (isset($_GET['view']) && $_GET['view'] === 'storage') {
+            echo 'align-id';
+        } else {
+            echo 'align-form';
+        }
+    ?>">
     <a href="../intro/index.php"><button>Home</button></a>
 
-    <?php if($showStorage): ?>
+    <?php if (isset($_GET['view']) && $_GET['view'] === 'storage'): ?>
         <a href="index.php"><button>Back to Form</button></a>
-    <?php endif; ?>
-
-    <?php if(!$showStorage): ?>
+    <?php else: ?>
         <a href="index.php?view=storage"><button>Project Storage</button></a>
     <?php endif; ?>
 </div>
+
+
+
 
 <?php if(!$showStorage): ?>
     <?php include 'form.php'; ?>
