@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <link rel="stylesheet" href="design/background.css">
+   <link rel="stylesheet" href="../design/background.css">
 </head>
 <body>
   <div class="cv-container">
