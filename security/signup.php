@@ -27,7 +27,7 @@
       <button type="submit">Sign Up</button>
 
       <!-- Link to login page inside security folder -->
-      <a href="login.php" class="back-link">Already have an account? Login</a>
+      <a href="../" class="back-link">Already have an account? Login</a>
     </form>
   </div>
 </body>
