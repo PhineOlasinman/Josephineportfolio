@@ -1,2 +1,2 @@
 <?php
-require 'intro/index.php';
+require 'security/login.php';
