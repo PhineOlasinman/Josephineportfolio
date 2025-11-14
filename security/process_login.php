@@ -26,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user'] = $row['first_name'];
 
             // Redirect to intro page
-            header("Location: ../intro/index.php");
+            header("Location: intro/index.php");
             exit;
         }
     }
 
     // If login fails
-    echo "<script>alert('Invalid login credentials'); window.location='../login.php';</script>";
+    echo "<script>alert('Invalid login credentials'); window.location='login.php';</script>";
 }
 ?>
