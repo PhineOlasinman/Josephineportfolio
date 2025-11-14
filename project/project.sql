@@ -1,6 +1,3 @@
-CREATE DATABASE project;
-
-USE project;
 
 CREATE TABLE project (
     id INT AUTO_INCREMENT PRIMARY KEY,
