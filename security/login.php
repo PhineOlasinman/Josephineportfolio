@@ -9,7 +9,7 @@
 <body>
   <div class="login-container">
     <h1>Login</h1>
-    <form action="security/process_login.php" method="POST">
+    <form action="process_login.php" method="POST">
       <label>Email</label>
       <input type="email" name="email" required>
 
