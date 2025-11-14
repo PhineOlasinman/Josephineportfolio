@@ -1,12 +1,12 @@
 <?php
 // Include the database connection
-include '../db.php';
+include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if all required fields are set
     if (!isset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'])) {
-        echo "<script>alert('Please fill in all required fields.'); window.location='../signup.php';</script>";
+        echo "<script>alert('Please fill in all required fields.'); window.location='signup.php';</script>";
         exit;
     }
 
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['password']);
 
     if (empty($first) || empty($last) || empty($email) || empty($password)) {
-        echo "<script>alert('All fields are required.'); window.location='../signup.php';</script>";
+        echo "<script>alert('All fields are required.'); window.location='signup.php';</script>";
         exit;
     }
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($checkResult->num_rows > 0) {
         // Email already exists
-        echo "<script>alert('Email already exists!'); window.location='../signup.php';</script>";
+        echo "<script>alert('Email already exists!'); window.location='signup.php';</script>";
         exit;
     }
 
@@ -42,10 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         // Success
-        echo "<script>alert('Account created! Please login.'); window.location='../login.php';</script>";
+        echo "<script>alert('Account created! Please login.'); window.location='login.php';</script>";
     } else {
         // Error
-        echo "<script>alert('Error creating account.'); window.location='../signup.php';</script>";
+        echo "<script>alert('Error creating account.'); window.location='signup.php';</script>";
     }
 
     // Close statements and connection
