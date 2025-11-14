@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Front Page</title>
-  <link rel="stylesheet" href="front.css">
+  <link rel="stylesheet" href="design/front.css">
 </head>
 <body>
   <?php include 'header.php'; ?>
