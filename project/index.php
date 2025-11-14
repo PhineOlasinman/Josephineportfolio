@@ -94,9 +94,9 @@ $showStorage = isset($_GET['view']) && $_GET['view'] === 'storage';
     <a href="../intro/index.php"><button>Home</button></a>
 
     <?php if (isset($_GET['view']) && $_GET['view'] === 'storage'): ?>
-        <a href="index.php"><button>Back to Form</button></a>
+        <a href="form.php"><button>Back to Form</button></a>
     <?php else: ?>
-        <a href="index.php?view=storage"><button>Project Storage</button></a>
+        <a href="form.php?view=storage"><button>Project Storage</button></a>
     <?php endif; ?>
 </div>
 
