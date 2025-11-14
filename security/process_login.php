@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user'] = $row['first_name'];
 
             // Redirect to intro page
-            header("Location: intro/index.php");
+            header("Location: ../intro/index.php");
             exit;
         }
     }
