@@ -9,7 +9,7 @@
 <body>
   <div class="login-container">
     <h1>Login</h1>
-    <form action="process_login.php" method="POST">
+    <form action="security/process_login.php" method="POST">
       <label>Email</label>
       <input type="email" name="email" required>
 
@@ -20,7 +20,7 @@
 
       <!-- Links Row -->
       <div class="links-row">
-        <a href="/security/signup.php" class="account-link">Don't have an account? Create an account</a>
+        <a href="security/signup.php" class="account-link">Don't have an account? Create an account</a>
         
       </div>
     </form>

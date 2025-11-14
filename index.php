@@ -1,2 +1,2 @@
 <?php
-require 'security/login.php';
+require 'login.php';
