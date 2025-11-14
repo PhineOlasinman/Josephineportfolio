@@ -20,7 +20,7 @@
 
       <!-- Links Row -->
       <div class="links-row">
-        <a href="signup.php" class="account-link">Create an account</a>
+        <a href="signup.php" class="account-link">Don't have an account? Create an account</a>
         
       </div>
     </form>
