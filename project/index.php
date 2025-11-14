@@ -78,7 +78,7 @@ $showStorage = isset($_GET['view']) && $_GET['view'] === 'storage';
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Project Management System</title>
-<link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="../design/project.css">
 </head>
 <body>
 <h1>Project Management System</h1>
@@ -94,9 +94,9 @@ $showStorage = isset($_GET['view']) && $_GET['view'] === 'storage';
     <a href="../intro/index.php"><button>Home</button></a>
 
     <?php if (isset($_GET['view']) && $_GET['view'] === 'storage'): ?>
-        <a href="form.php"><button>Back to Form</button></a>
+        <a href="index.php"><button>Back to Form</button></a>
     <?php else: ?>
-        <a href="form.php?view=storage"><button>Project Storage</button></a>
+        <a href="index.php?view=storage"><button>Project Storage</button></a>
     <?php endif; ?>
 </div>
 
