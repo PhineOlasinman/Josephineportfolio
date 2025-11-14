@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         // Success: alert and redirect to login page
-        echo "<script>alert('Account created! Please login.'); window.location='../security/login.php';</script>";
+        echo "<script>alert('Account created! Please login.'); window.location='../login.php';</script>";
         exit;
     } else {
         // Error: alert and redirect back to signup
