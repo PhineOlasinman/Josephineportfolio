@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="stylesheet" href="design/login.css">
+   <link rel="stylesheet" href="../design/login.css">
   <title>Login</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 
       <!-- Links Row -->
       <div class="links-row">
-        <a href="security/signup.php" class="account-link">Don't have an account? Create an account</a>
+        <a href="signup.php" class="account-link">Don't have an account? Create an account</a>
         
       </div>
     </form>
