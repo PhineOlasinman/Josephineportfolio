@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up</title>
   <link rel="stylesheet" href="design/login.css">
+  <title>Sign Up</title>
 </head>
 <body>
   <div class="login-container">
     <h1>Create Account</h1>
-    <form action="security/process_signup.php" method="POST">
+    <form action="process_signup.php" method="POST">
       <label>First Name</label>
       <input type="text" name="first_name" required>
 
