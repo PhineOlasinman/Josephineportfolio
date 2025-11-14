@@ -2,6 +2,9 @@
 // Include the database connection
 include 'db.php';
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if all required fields are set
