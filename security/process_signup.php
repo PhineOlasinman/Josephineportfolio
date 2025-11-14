@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         // Success
-        echo "<script>alert('Account created! Please login.'); window.location='login.php';</script>";
+        echo "<script>alert('Account created! Please login.'); window.location='../login.php';</script>";
     } else {
         // Error
         echo "<script>alert('Error creating account.'); window.location='signup.php';</script>";

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../design/signup.css">
+  <link rel="stylesheet" href="../design/login.css">
   <title>Sign Up</title>
 </head>
 <body>
@@ -27,7 +27,7 @@
       <button type="submit">Sign Up</button>
 
       <!-- Link to login page inside security folder -->
-      <a href="login.php" class="back-link">Already have an account? Login</a>
+      <a href="../login.php" class="back-link">Already have an account? Login</a>
     </form>
   </div>
 </body>
