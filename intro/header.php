@@ -8,7 +8,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <li><a href="index.php" class="nav-link">HOME</a></li>
     <li><a href="../project/index.php" class="nav-link">PROJECT</a></li>
     <li><a href="#about" class="nav-link">ABOUT</a></li>
-    <li><a href="login.php" id="loginBtn">LOGOUT</a></li>
+    <li><a href="../login.php" id="loginBtn">LOGOUT</a></li>
     
    
   </ul>
