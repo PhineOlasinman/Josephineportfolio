@@ -23,7 +23,7 @@
       <input type="password" name="password" required>
 
       <button type="submit">Sign Up</button>
-      <a href="security/login.php" class="back-link">Already have an account? Login</a>
+      <a href="login.php" class="back-link">Already have an account? Login</a>
     </form>
   </div>
 </body>
